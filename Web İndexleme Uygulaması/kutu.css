@@ -1,0 +1,95 @@
+body,h1,ul,li{
+    margin: 0;
+    padding: 0;
+}
+
+ 
+body{
+    background:#d3dde8;
+    font-family: sans-serif;
+}
+form,fieldset,footer{
+    background:gray;
+    font-family: sans-serif;
+}
+
+legend{
+    font-family: sans-serif;
+    text-align: center;
+    padding: 5px;
+  	margin-bottom: 10px;
+}
+.field_set{
+  border-color: lightblue;
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.form_set{
+  border-color: black;
+  border-style: solid;
+  border-width: 4px;
+}
+.sayfa{
+    width: 600px;
+    margin:30px auto;
+}
+ 
+#baslik{
+    float: center;
+    font-size: 1.2em;
+    color: black;
+    margin: auto;
+    background-color: #f8ffa8;
+    text-decoration: none;
+    text-align: center;
+}
+
+ 
+
+
+
+
+.nav ul {
+    *zoom:1;
+    list-style:none;
+    margin:0;
+    padding:0;
+    background:#333;
+}
+.nav ul:before,.nav ul:after {
+    content:"";
+    display:table;
+}
+.nav ul:after {
+    clear:both;
+}
+.nav ul > li {
+    float:left;
+    position:relative;
+    text-align: center;
+}
+.nav a {
+    display:block;
+    padding:10px 20px;
+    line-height:1.2em;
+    color:#fff;
+    border-left:1px solid #595959;
+}
+.nav a:hover {
+    text-decoration:none;
+    background:#595959;
+}
+.nav li ul {
+    background:#273754;
+}
+.nav li ul li {
+    width:200px;
+}
+.nav li ul a {
+    border:none;
+}
+.nav li ul a:hover {
+    background:rgba(0,0,0,0.2);
+}
