@@ -1,2 +1,2 @@
-# Web-Indexleme-Uygulamas-
+# Web-Indexleme-Uygulamasi
 Web İndexing with PHP
