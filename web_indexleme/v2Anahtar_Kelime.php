@@ -44,3 +44,30 @@ Kelime Sayısı
 </body>
 
 </html>
+<?php
+function multiexplode ($delimiters,$string) {
+
+    $ready = str_replace($delimiters, $delimiters[0], $string);
+    $launch = explode($delimiters[0], $ready);
+    return  $launch;
+}
+
+
+if(isset($_POST['yolla']))
+{
+  $adi = $_POST['url']; //echo $adi; GİRİLEN URL'yi Fonksiyona veriyoruz.
+  $oku = file_get_contents($adi); 
+  $dizi = multiexplode(array(" ",".",'\n','\r',":",";","[","]","-","_","|",'}','"','{'),$oku);
+  $foo = False;
+  $dizi2 = implode(" ", $dizi);
+  print_r($dizi);
+  echo " <br />"; 
+  for ($i = 0; $i < count($dizi); $i++) {
+        $temp = $dizi[$i];
+        $count = substr_count(implode(" ", $dizi), " ".$temp." ");
+
+        print_r($dizi[$i]. " : ".$count."<br />  ");
+    }
+  //echo $oku;
+}
+?>
