@@ -45,29 +45,46 @@ Kelime Sayısı
 
 </html>
 <?php
-function multiexplode ($delimiters,$string) {
-
-    $ready = str_replace($delimiters, $delimiters[0], $string);
-    $launch = explode($delimiters[0], $ready);
-    return  $launch;
-}
-
+include('simple_html_dom.php');
 
 if(isset($_POST['yolla']))
 {
-  $adi = $_POST['url']; //echo $adi; GİRİLEN URL'yi Fonksiyona veriyoruz.
-  $oku = file_get_contents($adi); 
-  $dizi = multiexplode(array(" ",".",'\n','\r',":",";","[","]","-","_","|",'}','"','{'),$oku);
-  $foo = False;
-  $dizi2 = implode(" ", $dizi);
-  print_r($dizi);
-  echo " <br />"; 
-  for ($i = 0; $i < count($dizi); $i++) {
-        $temp = $dizi[$i];
-        $count = substr_count(implode(" ", $dizi), " ".$temp." ");
+  $adi = $_POST['url'];
 
-        print_r($dizi[$i]. " : ".$count."<br />  ");
+$html = file_get_html($adi);
+
+$htmlPtext = $html->plaintext;
+
+
+$words = str_word_count($htmlPtext,1);
+foreach ($words as $key=>&$value) {
+    if (strlen($value) < 3) {
+        unset($words[$key]);
     }
-  //echo $oku;
+}
+$words_frequency = array_count_values($words);
+$words = array_unique($words);
+arsort($words_frequency);
+ 
+
+//  !!!!-----<<<< TÜM KELİMELERİ VE FREKANSLARINI BULUYOR BURADA 1.AŞAMAYI YAZDIRMIYORUZ.   
+/*echo "<b>"."&nbsp&nbsp&nbsp&nbsp Kelime &nbsp&nbsp Frekans "."</b>"."<br/>";
+foreach($words as $index => $value) {
+   echo "<b>"."&nbsp&nbsp&nbsp&nbsp".$words[$index]."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ".$words_frequency[$value]."</b>";
+   echo "<br />";
+}*/
+
+$keywords = array();
+foreach ($words as $key=>&$value) {
+    if (strlen($value) > 6) {
+        array_push($keywords, $words[$key]);
+    }
+}
+
+foreach($keywords as $index => $value) {
+   echo "<b>"."&nbsp&nbsp&nbsp&nbsp".$keywords[$index]."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ".$words_frequency[$value]."</b>";
+   echo "<br />";
+}
+
 }
 ?>

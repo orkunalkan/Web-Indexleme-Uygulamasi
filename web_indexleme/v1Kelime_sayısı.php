@@ -55,14 +55,21 @@ $html = file_get_html($adi);
 
 $htmlPtext = $html->plaintext;
 
+
 $words = str_word_count($htmlPtext,1);
+foreach ($words as $key=>&$value) {
+    if (strlen($value) < 3) {
+        unset($words[$key]);
+    }
+}
 $words_frequency = array_count_values($words);
+$words = array_unique($words);
 arsort($words_frequency);
 	
 echo "<b>"."&nbsp&nbsp&nbsp&nbsp Kelime &nbsp&nbsp Frekans "."</b>"."<br/>";
 foreach($words as $index => $value) {
    echo "<b>"."&nbsp&nbsp&nbsp&nbsp".$words[$index]."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	".$words_frequency[$value]."</b>";
-   echo "<br/>";
+   echo "<br />";
 }
 }
 ?>
