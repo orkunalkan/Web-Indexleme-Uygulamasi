@@ -45,29 +45,24 @@ Kelime Sayısı
 
 </html>
 <?php
-function multiexplode ($delimiters,$string) {
-
-    $ready = str_replace($delimiters, $delimiters[0], $string);
-    $launch = explode($delimiters[0], $ready);
-    return  $launch;
-}
-
+include('simple_html_dom.php');
 
 if(isset($_POST['yolla']))
 {
-  $adi = $_POST['url']; //echo $adi; GİRİLEN URL'yi Fonksiyona veriyoruz.
-  $oku = file_get_contents($adi); 
-  $dizi = multiexplode(array(" ",".",'\n','\r',":",";","[","]","-","_","|",'}','"','{'),$oku);
-  $foo = False;
-  $dizi2 = implode(" ", $dizi);
-  print_r($dizi);
-  echo " <br />"; 
-  for ($i = 0; $i < count($dizi); $i++) {
-        $temp = $dizi[$i];
-        $count = substr_count(implode(" ", $dizi), " ".$temp." ");
+  $adi = $_POST['url'];
 
-        print_r($dizi[$i]. " : ".$count."<br />  ");
-    }
-  //echo $oku;
+$html = file_get_html($adi);
+
+$htmlPtext = $html->plaintext;
+
+$words = str_word_count($htmlPtext,1);
+$words_frequency = array_count_values($words);
+arsort($words_frequency);
+	
+echo "<b>"."&nbsp&nbsp&nbsp&nbsp Kelime &nbsp&nbsp Frekans "."</b>"."<br/>";
+foreach($words as $index => $value) {
+   echo "<b>"."&nbsp&nbsp&nbsp&nbsp".$words[$index]."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	".$words_frequency[$value]."</b>";
+   echo "<br/>";
+}
 }
 ?>
