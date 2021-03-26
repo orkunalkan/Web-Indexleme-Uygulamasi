@@ -3,12 +3,12 @@
 
 $fgc = file_get_contents("A.txt");
 
-$sayac=0;
+$sayma=0;
 
-foreach ($json as $key => &$value) {
+/*foreach ($json as $key => &$value) {
 
 	for ($i=0; $i <count($value->SYNONYMS) ; $i++) { 
-		if (isset($value->SYNONYMS[$i]) && $sayac==) {
+		if (isset($value->SYNONYMS[$i]) && $sayma==) {
 			//echo $value->SYNONYMS[$i]."&nbsp&nbsp&nbsp&nbsp";
 			//echo get_class($value->MEANINGS);
 			echo $json->next;
@@ -16,10 +16,10 @@ foreach ($json as $key => &$value) {
 		}
 
 	}
-	$sayac++;
+	$sayma++;
 	//echo count($value->SYNONYMS);
 	echo "<br/>";
-}
+}*/
 
 $jsonIterator = new RecursiveIteratorIterator(
     new RecursiveArrayIterator(json_decode($fgc, TRUE)),

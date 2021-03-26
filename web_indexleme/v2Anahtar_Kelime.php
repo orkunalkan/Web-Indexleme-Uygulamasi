@@ -156,7 +156,7 @@ $benzerlik_say = 0;
 $anahtar_say = 0;
 foreach ($keywords as $key => $value) {
 $benzerlik_say += $words_frequency[$value]*substr_count($htmlPtext2,$keywords[$key]);
-$anahtar_say += substr_count($htmlPtext2,$keywords[$key]);
+$anahtar_say += substr_count($htmlPtext2,$keywords[$key]); 
 }
 $skor += $benzerlik_say/$anahtar_say;
 echo "<br /> Skor : ",$skor,"<br />";
