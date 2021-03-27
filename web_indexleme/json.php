@@ -27,7 +27,7 @@ $jsonIterator = new RecursiveIteratorIterator(
 
 foreach ($jsonIterator as $key => $val) {
     if(is_array($val) && $key != 'MEANINGS' && $key != 'ANTONYMS' && $key != 'SYNONYMS' && $key >100  ) {
-        echo "$key:\n<br/>";
+        echo "$key\n<br/>";
     } else {
         //echo "$key => $val\n";
     }

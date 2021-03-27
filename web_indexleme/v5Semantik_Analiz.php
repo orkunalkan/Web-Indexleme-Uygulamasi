@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
+    <title>
 Kelime Sayısı
-	</title>
+    </title>
 <charset mark="utf-8">
 <link href="kutu.css" rel="stylesheet">  
 </head>
@@ -20,10 +20,35 @@ Kelime Sayısı
 </nav>
 
 <pre id="baslik">
-	<a>
-    	<h1>WEB İNDEKSLEME UYGULAMASI</h1>
+    <a>
+        <h1>WEB İNDEKSLEME UYGULAMASI</h1>
     </a>
 </pre>
+<body>
+    <div class="sayfa">
+        <form action="" method="post" class="form_set">
+            <fieldset class="field_set">
+                <legend><h2><b><big>URL</h2></b></big></legend>
+                  <b>Url Girişi:  </b>  <br />
+                  <input type="text" name="url" size="75"><br />
+                <footer>
+                <address>
+                        <small><i>2021 @ created by Orkun Alkan - Yazılım Lab.II, 2020-2021 Bahar Proje I</small></i>
+                <address>
+                </footer>
+            </fieldset>
+       
+        <br/>
+        <footer class="field_set">
+            <b>Web Kümesi Giriniz : (Her bir Url arasına boşluk bırakınız!!!)</b>
+        </footer>
+        <fieldset class="field_set">
+    <textarea id="contact_list" name="contact_list" rows="20" cols="79"></textarea>
+    <input type="submit" name="yolla" value="Gönder" id="yolla" size="25"/>
+    </fieldset>
+     </form>
+</div>
+</body>
 
 <?php
 //--------------------------------------------------
@@ -53,24 +78,6 @@ $words_frequency = array_count_values($words);
 $words = array_unique($words);
 arsort($words_frequency);
 
-$fgc = file_get_contents("A.txt");
-
-$sayma=0;
-
-$jsonIterator = new RecursiveIteratorIterator(
-    new RecursiveArrayIterator(json_decode($fgc, TRUE)),
-    RecursiveIteratorIterator::SELF_FIRST);
-
-foreach ($jsonIterator as $key => $val) {
-    if(is_array($val) && $key != 'MEANINGS' && $key != 'ANTONYMS' && $key != 'SYNONYMS' && $key >100  ) {
-        echo "$key:\n<br/>";
-    } else {
-        //echo "$key => $val\n";
-    }
-}
-
- 
-
 $keywords = array();
 
 $border = 0;
@@ -96,6 +103,29 @@ foreach($keywords as $key => $value) {
    echo "<b>"."&nbsp&nbsp&nbsp&nbsp".$keywords[$key]."&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ".$words_frequency[$value]."</b>";
    echo "<br />";
 }
+
+$fgc = file_get_contents("A.txt");
+
+$syn_index = array();
+$impkey = implode(" ", $keywords);
+echo $impkey;
+
+$jsonIterator = new RecursiveIteratorIterator(
+    new RecursiveArrayIterator(json_decode($fgc, TRUE)),
+    RecursiveIteratorIterator::SELF_FIRST);
+
+foreach ($jsonIterator as $key => $val) {
+    if(is_array($val) && $key != 'MEANINGS' && $key != 'ANTONYMS' && $key != 'SYNONYMS' && $key >100  ) {
+        //echo "$key:\n<br/>";
+        if(str_contains($impkey, $key)){
+            array_push($syn_index, $key);
+            
+        }
+    } else {
+        //echo "$key => $val\n";
+    }
+}
+print_r($syn_index);
 
 function processText($text) {
     $text = strip_tags($text);
