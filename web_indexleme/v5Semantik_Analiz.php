@@ -107,25 +107,55 @@ foreach($keywords as $key => $value) {
 $fgc = file_get_contents("A.txt");
 
 $syn_index = array();
-$impkey = implode(" ", $keywords);
-echo $impkey;
-
+$relevant_key_index = array();
+$json = json_decode($fgc);
+$inx=0;
 $jsonIterator = new RecursiveIteratorIterator(
     new RecursiveArrayIterator(json_decode($fgc, TRUE)),
     RecursiveIteratorIterator::SELF_FIRST);
 
 foreach ($jsonIterator as $key => $val) {
-    if(is_array($val) && $key != 'MEANINGS' && $key != 'ANTONYMS' && $key != 'SYNONYMS' && $key >100  ) {
-        //echo "$key:\n<br/>";
-        if(str_contains($impkey, $key)){
-            array_push($syn_index, $key);
-            
-        }
-    } else {
-        //echo "$key => $val\n";
-    }
+    if(is_array($val) && $key != 'MEANINGS' && $key != 'ANTONYMS' && $key != 'SYNONYMS' && $key >9999999999  ) {
+        //echo "$key\n<br/>";
+        array_push($syn_index, $key);
+    } 
 }
-print_r($syn_index);
+implode(" ", $syn_index);
+
+
+for ($i=0; $i < count($syn_index); $i++) { 
+        foreach ($keywords as $key => $value) {
+          if (strcmp($syn_index[$i], strtoupper($keywords[$key]))==0) {
+                    //echo $syn_index[$i]."<br/>";
+                    array_push($relevant_key_index, ($i+1));
+                    //print_r($relevant_key_index);
+                }
+        }    
+}
+echo "<b><h4><br/>---ALAKALI ANAHTAR KELİMELER---<br/></h4></b>";
+foreach ($json as $key => &$value) {
+
+     if (in_array($inx,$relevant_key_index)){
+    echo "<b>".$syn_index[$inx-1]."<br />"."</b>";
+    }
+    
+    
+    for ($i=0; $i <count($value->SYNONYMS) ; $i++) { 
+        if (isset($value->SYNONYMS[$i]) && in_array($inx,$relevant_key_index)) {
+            echo "<b>"."&nbsp&nbsp&nbsp&nbsp".$value->SYNONYMS[$i];
+            
+
+        }
+
+    }
+    if (in_array($inx-1,$relevant_key_index)){
+    echo "<br />";
+    }
+    $inx++;
+
+
+}
+
 
 function processText($text) {
     $text = strip_tags($text);

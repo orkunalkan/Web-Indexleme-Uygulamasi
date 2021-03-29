@@ -12,6 +12,9 @@ form,fieldset,footer{
     background:gray;
     font-family: sans-serif;
 }
+.baslik{
+    text-align: center;
+}
 
 
 legend{
@@ -93,4 +96,19 @@ legend{
 }
 .nav li ul a:hover {
     background:rgba(0,0,0,0.2);
+}
+.container{
+    width: 55%;
+    margin: auto;
+    
+}
+.box-1{
+    background-color: #fff;
+    color: #333;
+    
+    padding-left: 40px;
+    padding-top: 80px;
+    padding-bottom: 10px;
+    padding-right: 40px;
+    margin-top: 10px;
 }
