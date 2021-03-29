@@ -11,8 +11,7 @@ Kelime Sayısı
 <nav class="nav">
             <ul>
                 <li><a href="http://localhost/web_indexleme/v1Kelime_Sayısı.php">Kelime Sayısı</a></li>
-    			<li><a href="http://localhost/web_indexleme/v2Anahtar_Kelime.php">Anahtar Kelime</a></li>
-    			<li><a href="http://localhost/web_indexleme/v3Benzerlik_Skorlama.php">Benzerlik Skorlama</a></li>
+    			<li><a href="http://localhost/web_indexleme/v23Anahtar_Kelime.php">Anahtar Kelime</a></li>
     			<li><a href="http://localhost/web_indexleme/v4İndexleme_Sıralama.php">İndexleme Ve Sıralama</a></li>
     			<li><a href="http://localhost/web_indexleme/v5Semantik_Analiz.php">Semantik Analiz</a></li> 
     			<li><a href="http://localhost/web_indexleme/v6Rapor_Sayfası.php">Rapor Sayfası</a></li> 
@@ -35,7 +34,7 @@ Kelime Sayısı
                   <input type="submit" name="yolla" size="20"><br />
                 <footer>
                 <address>
-                        <small><i>2021 @ created by Orkun Alkan - Yazılım Lab.II, 2020-2021 Bahar Proje I</small></i>
+                        <small><i>2021 @ created by Orkun Alkan|Oguz Can Varol - Yazılım Lab.II, 2020-2021 Bahar Proje I</small></i>
                 <address>
                 </footer>
             </fieldset>

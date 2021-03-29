@@ -11,8 +11,7 @@ Kelime Sayısı
 <nav class="nav">
             <ul>
                 <li><a href="http://localhost/web_indexleme/v1Kelime_Sayısı.php">Kelime Sayısı</a></li>
-                <li><a href="http://localhost/web_indexleme/v2Anahtar_Kelime.php">Anahtar Kelime</a></li>
-                <li><a href="http://localhost/web_indexleme/v3Benzerlik_Skorlama.php">Benzerlik Skorlama</a></li>
+                <li><a href="http://localhost/web_indexleme/v23Anahtar_Kelime.php">Anahtar Kelime</a></li>
                 <li><a href="http://localhost/web_indexleme/v4İndexleme_Sıralama.php">İndexleme Ve Sıralama</a></li>
                 <li><a href="http://localhost/web_indexleme/v5Semantik_Analiz.php">Semantik Analiz</a></li> 
                 <li><a href="http://localhost/web_indexleme/v6Rapor_Sayfası.php">Rapor Sayfası</a></li> 
@@ -40,7 +39,7 @@ Kelime Sayısı
        
         <br/>
         <footer class="field_set">
-            <b>Web Kümesi Giriniz : (Her bir Url arasına boşluk bırakınız!!!)</b>
+            <b>Web Kümesi Giriniz : (Her bir Url'den sonra enter'a basınız!)</b>
         </footer>
         <fieldset class="field_set">
     <textarea id="contact_list" name="contact_list" rows="20" cols="79"></textarea>
@@ -156,13 +155,6 @@ foreach ($json as $key => &$value) {
 
 }
 
-
-function processText($text) {
-    $text = strip_tags($text);
-    $text = trim($text);
-    $text = htmlspecialchars($text);
-    return $text;
-}
 function getValidUrlsFrompage($source)
   {
     $links = [];
@@ -188,7 +180,6 @@ function getValidUrlsFrompage($source)
 
 $urls = array();
 $urls = htmlspecialchars($_POST['contact_list']);
-//$urls = processText($_POST['contact_list']);
 $urls = explode("\n", $urls);
 $i=1;
 $skor = 0;
@@ -200,42 +191,53 @@ $link_border2 = 0;
     foreach ($urls as $key => $value) {
         
         $htmls = file_get_html($urls[$key]);
+        $url1= $urls[$key];
         $htmlsPtext2 = $htmls->plaintext;
+        
 
          
-        echo "<h4><b>---".$i.".URL :</b>".$urls[$key]."<br/></h4>"; 
-        echo "<b><br/>---2.DERİNLİK SEVİYESİ---<br/></b>"; 
-        //////////////////////////////////////////////////////////////
-        $links2 = getValidUrlsFrompage($urls[$key]);                //
+       echo "<b><br/>---2.DERİNLİK SEVİYESİ---<br/></b>"; 
+//////////////////////////////////////////////////////////////
+        $links2 = getValidUrlsFrompage($urls[$key]);               
         foreach ($links2 as $key => $value) {
-            echo "2.",($link_border+1),"URL",$links2[$key],"<br/>";                      //
+            echo "<b>2.",($link_border+1),"</b>URL",$links2[$key],"<br/>";                    
             $htmls2 = file_get_html($links2[$key]);
             $htmls2Ptext2 = $htmls2->plaintext;
             $link_border++;
+               foreach ($keywords as $key => $value) {
+            $benzerlik_say += $words_frequency[$value]*substr_count($htmls2Ptext2,$keywords[$key]);
+            $anahtar_say += substr_count($htmls2Ptext2,$keywords[$key]);
+            echo "<br/><b>ANAHTAR:&nbsp",$keywords[$key],"&nbsp frekansı :",substr_count($htmls2Ptext2,$keywords[$key])," </b><br/>";
+            }
           
-            $links3 = getValidUrlsFrompage($links2[$key]);          //
+            $links3 = getValidUrlsFrompage($links2[$key]); 
+            echo "<b><br/>---3.DERİNLİK SEVİYESİ---<br/></b>";          
             foreach ($links3 as $key => $value) { 
-                echo "3.",($link_border2+1),"URL",$links3[$key],"<br/>";                     //
+                echo "3.",($link_border2+1),"URL",$links3[$key],"<br/>";                    
                 $htmls3 = file_get_html($links3[$key]);
                 $htmls3Ptext3 = $htmls3->plaintext;
                 $link_border2++;
                 foreach ($keywords as $key => $value) {
                 $benzerlik_say += $words_frequency[$value]*substr_count($htmls3Ptext3,$keywords[$key]);
                 $anahtar_say += substr_count($htmls3Ptext3,$keywords[$key]);
+                echo "<br/><b>ANAHTAR:&nbsp",$keywords[$key],"&nbsp frekansı :",substr_count($htmls3Ptext3,$keywords[$key])," </b><br/>";
                 }
                 
             }
-              foreach ($keywords as $key => $value) {
-            $benzerlik_say += $words_frequency[$value]*substr_count($htmls2Ptext2,$keywords[$key]);
-            $anahtar_say += substr_count($htmls2Ptext2,$keywords[$key]);
-            } 
+            
         }
-                                                                   //                                                          //
+                                                            
         //////////////////////////////////////////////////////////////
-        foreach ($keywords as $key => $value) {
+         echo "<h4><b>---".$i.".URL :</b>".$url1."<br/></h4>"; 
+        echo "<b><br/>---1.DERİNLİK SEVİYESİ---<br/></b>"; 
+         foreach ($keywords as $key => $value) {
         $benzerlik_say += $words_frequency[$value]*substr_count($htmlsPtext2,$keywords[$key]);
         $anahtar_say += substr_count($htmlsPtext2,$keywords[$key]);
+        echo "<br/><b>ANAHTAR:&nbsp",$keywords[$key],"&nbsp frekansı :",substr_count($htmlsPtext2,$keywords[$key])," </b><br/>";
         }
+
+
+
         if($anahtar_say>=0){
         $skor += $benzerlik_say/$anahtar_say;
         echo "<b><br /> &nbsp&nbsp Skor : ",$skor,"<br /></b>";
@@ -244,6 +246,9 @@ $link_border2 = 0;
             echo "<b><br /> &nbsp&nbsp  Benzerlik Skoru : 0 <br /></b>"; 
         }
         $i++;
+
+
+
     }
 
 }
