@@ -36,7 +36,7 @@ Kelime Sayısı
                   <input type="submit" name="yolla" size="20"><br />
                 <footer>
                 <address>
-                        <small><i>2021 @ created by Orkun Alkan - Yazılım Lab.II, 2020-2021 Bahar Proje I</small></i>
+                        <small><i>2021 @ created by Orkun Alkan|Oguz Can Varol - Yazılım Lab.II, 2020-2021 Bahar Proje I</small></i>
                 <address>
                 </footer>
             </fieldset>

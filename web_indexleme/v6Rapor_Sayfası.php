@@ -53,7 +53,7 @@ Kelime Sayısı
       <p>Dördüncü aşamada kullanıcının girdiği bir web sitesi kümesi ve farklı bir URL için bizden web sitesinin içerinide bulunan URL'lerin ve onların içinde bulunan URL'lerin yani web sitesinin birinci ikinci ve üçüncü derinliklerinin bize verilen farklı URL'nin anahtar kelimelerine göre benzerlik skorlamalarını yaptık. </p>
       <p>Beşinci aşamada bulduğumuz anahtar kelimelerin semantik analizini yapmak için kelimelerin eş anlamlısının yani "synonym"lerinin bulunduğu veri setini internetten indirip projeye dahil ettik. Daha sonra beşinci aşamayı tamamlamak için alakalı anahtar kelimeleri skorlamaya dahil etmeye çalıştık. </p>
 
-<h2>4-)KARŞILAŞILAN HATALAR </h2>   
+<h2>3-)KARŞILAŞILAN HATALAR </h2>   
       
       <p>Projeye başlamadan önce ve başladıktan sonra karşılaştığımız sıkıntılar :</p>
       <p>Projeye ilk başladığımızda HTML ve CSS yapısını oluşturduktan sonra kullanıcıdan aldığımız URL'nin içerisinden text kısmını nasıl çekeceğimiz ve nasıl değişkene atabileceğimiz konusunda birden fazla fonksiyon ve kütüphaneyi denememize rağmen projede web sitesinden çekmemiz istenen metnin ne olduğu konusunda kararsız kaldık.</p>
@@ -61,7 +61,14 @@ Kelime Sayısı
       <p>Beşinci aşamada projeye dahil ettiğimiz data setinden eş anlamlı (synonym) kelimeleri çekerken indexlerinde kayma meydana geldiğinden dolayı aldığımız sonuçlarda küçük bir farklılık gözlemledik.</p>
       <p>Genel olarak yaşadığımız bir sıkıntı olan konu da kullandığımız web sayfalarının bazıları içerisinden veri çekmesini engellediğinden dolayı her web sitesiyle bu işlem gerçekleştirilememektedir.</p>
       
-<h2>5-)KAYNAKÇA</h2> 
+<h2>4-)PROJE SIRASINDA YARARLANILAN TEKNOLOJİLER</h2>
+      <p>Projemizi PHP programlam dili kullanarak Sublime-Text 2 ortamında oluşturduk.</p>
+      <p>Projeyi yaparken PHP programlama dilinin ve ayrıca HTML ve CSS yapılarının bize sunduğu kütüphanelerinden, indexleme işlemlerinden ve fonksiyonlardan yararlandık.</p>
+
+<h2>5-)SONUÇ</h2>
+      <p>Projenin başında sonuna kadar pek fazla sorunla karşılaşmasak da ne yapacağımızı anlamayıp düşündüğümüz çok oldu. Tıkandığımız anlayamadığımız yerler olsa da birlikte fikir alışverişi yaparak bunun üstesinden geldik.Bu projede veri yapılarının mantığını iyice oturttuk. Var olan algoritmayı anlamak ve işimize yarayacak şekilde düzenlemeyi öğrendik aynı zamanda kendi algoritmalarımızı yazmayı  öğrendik. Sorun çözme yeteneğimiz ve kod yazma becerimize büyük katkısı olan bu projede bir iki eksik harici tüm istenenleri verilen zamanda yaptık yapamadıklarımızın da nasıl yapıldığını daha sonra çözdük.Bu proje bizim veri yapıları ve algoritmalarda gelişmemizi sağladı.</p>
+
+<h2>6-)KAYNAKÇA</h2> 
       <p>1-) http://bilgisayarkavramlari.sadievrenseker.com </p>
       <p>2-) https://stackoverflow.com</p>
       <p>3-) https://www.w3schools.com/php/default.asp</p>
@@ -71,6 +78,16 @@ Kelime Sayısı
       <p>7-) https://www.tutorialspoint.com/php/index.htm</p>
       <p>8-) https://simplehtmldom.sourceforge.io/</p>
 
+<h2>Stage-1</h2> 
+<img src="images\1.png" width="750" height="500"/>
+<h2>Stage-2/3</h2> 
+<img src="images\2.png" width="750" height="500"/>
+<h2>Stage-4</h2> 
+<img src="images\3.1.png" width="750" height="500"/>
+<img src="images\3.2.png" width="750" height="500"/>
+<h2>Stage-5</h2> 
+<img src="images\3.1.png" width="750" height="500"/>
+<img src="images\4.2.png" width="750" height="500"/>
 
     </div>
   </div>
